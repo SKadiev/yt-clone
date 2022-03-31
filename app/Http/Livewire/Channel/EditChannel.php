@@ -8,14 +8,17 @@ use App\Services\ChannelRepository;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 
 class EditChannel extends Component
 {
     use AuthorizesRequests;
-
+    use WithFileUploads;
     public string $name = 'tote';
     public Channel $channel;
+    public $image;
+    protected $listeners = ['channelUpdate' => 'handleUpdate'];
 
     protected function rules()
     {
@@ -23,7 +26,13 @@ class EditChannel extends Component
             'channel.name' => 'required|string|min:4|max:50|unique:channels,name,' . $this->channel->id,
             'channel.slug' => 'required|string|min:4|max:50|unique:channels,slug,' . $this->channel->id,
             'channel.description' => 'nullable|string|max:1000',
+            'image' => 'image|max:1024',
         ];
+    }
+
+    public function handleUpdate(ChannelRepository $channelRepository)
+    {
+        $channelRepository->saveChannel($this);
     }
 
     public function render()

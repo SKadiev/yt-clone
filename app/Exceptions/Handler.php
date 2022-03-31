@@ -34,6 +34,11 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+
+        $this->reportable(function (ImageNotStoredException $e) {
+            var_dump($e);
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
