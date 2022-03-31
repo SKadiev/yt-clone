@@ -1,4 +1,7 @@
 <div>
+    @if($channel)
+        <img src="{{ asset($channel->image)}}">
+    @endif
     <form wire:submit.prevent="save">
         <div class="form-group">
             <label for="name">Name</label>
@@ -29,8 +32,13 @@
         @enderror
 
         <div class="form-group pb-2">
-            <img class="avatar-img" src="{{asset('storage/photos/' . $channel->uid . '.png')}}" alt="dasdasd">
+            <label for="image">Avatar image</label>
+            <br/>
             <input type="file" wire:model="image">
+            @if ($image)
+                Photo Preview:
+                <img class="avatar-img-preview" src="{{ $image->temporaryUrl() }}">
+            @endif
         </div>
         @error('image')
         <div class="alert alert-danger">
