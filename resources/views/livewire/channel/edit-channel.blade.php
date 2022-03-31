@@ -23,7 +23,7 @@
         @enderror
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea wire:model.lazy="channel.description" class="form-control pb-2" id="description"></textarea>
+            <textarea wire:model.lazy="channel.description" class="form-control mb-2" id="description"></textarea>
         </div>
         @error('channel.description')
         <div class="alert alert-danger">
@@ -31,7 +31,7 @@
         </div>
         @enderror
 
-        <div class="form-group pb-2">
+        <div class="form-group mb-2">
             <label for="image">Avatar image</label>
             <br/>
             <input type="file" wire:model="image">
@@ -45,9 +45,9 @@
             {{$message}}
         </div>
         @enderror
-        <button type="submit" class="btn btn-primary pb-2">Submit</button>
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
         @if(session()->has('message'))
-            <div class="alert alert-success">
+            <div class="mt-2 mb-2 alert alert-success">
                 {{session('message')}}
             </div>
         @endif
