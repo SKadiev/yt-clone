@@ -2,13 +2,18 @@
 
 namespace App\Http\Livewire\Channel;
 
+use App\Events\ChannelUpdated;
 use App\Models\Channel;
+use App\Services\ChannelRepository;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 
 class EditChannel extends Component
 {
+    use AuthorizesRequests;
+
     public string $name = 'tote';
     public Channel $channel;
 
@@ -26,12 +31,9 @@ class EditChannel extends Component
         return view('livewire.channel.edit-channel');
     }
 
-    public function save()
+    public function save(ChannelRepository $channelRepository)
     {
-        $this->validate();
-        $this->channel->save();
-        session()->flash('message', 'Channel updated');
-        return redirect()->route('channel.edit', $this->channel->slug);
+        $channelRepository->saveChannel($this);
     }
 
 }
