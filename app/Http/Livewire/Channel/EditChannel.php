@@ -12,9 +12,14 @@ class EditChannel extends Component
     public string $name = 'tote';
     public Channel $channel;
 
-    protected array $rules = [
-        'channel.name' => 'required|string|min:4',
-    ];
+    protected function rules()
+    {
+        return [
+            'channel.name' => 'required|string|min:4|max:50|unique:channels,name,' . $this->channel->id,
+            'channel.slug' => 'required|string|min:4|max:50|unique:channels,slug,' . $this->channel->id,
+            'channel.description' => 'nullable|string|max:1000',
+        ];
+    }
 
     public function render()
     {
@@ -24,11 +29,9 @@ class EditChannel extends Component
     public function save()
     {
         $this->validate();
-        $this->channel->slug = Str::slug($this->channel->name, '-');
         $this->channel->save();
-
-        return back()->status(201);
+        session()->flash('message', 'Channel updated');
+        return redirect()->route('channel.edit', $this->channel->slug);
     }
-
 
 }
