@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Livewire\Home\IndexHome;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', IndexHome::class);
-    Route::get('/channel/{channel}/edit', \App\Http\Livewire\Channel\EditChannel::class);
+    Route::get('/', [\App\Http\Controllers\HomeController::class , 'index'])->name('home');
+    Route::get('/channel/{channel}/edit', [\App\Http\Controllers\ChannelController::class, 'edit'])->name('channel.edit');
+
+    Route::get('/videos/{channel}/create', \App\Http\Livewire\Video\CreateVideo::class)->name('video.create');
+    Route::get('/videos/{channel}/{video}/edit}', \App\Http\Livewire\Video\EditVideo::class)->name('video.edit');
+    Route::get('/videos/{channel}', \App\Http\Livewire\Video\AllVideo::class)->name('video.index');
 });
