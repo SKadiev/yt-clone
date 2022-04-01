@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Video;
 use App\Models\Channel;
 use App\Models\Video;
 use App\Services\VideoRepository;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,6 +16,7 @@ class CreateVideo extends Component
     public Channel $channel;
     public Video $video;
     public $videoFile;
+    public bool $uploadCompleted = false;
 
     public function render()
     {
@@ -33,8 +35,14 @@ class CreateVideo extends Component
         $repository->saveChannel($this);
     }
 
-    public function fileCompleted()
+    public function fileUploaded(): bool
     {
+        return $this->uploadCompleted = true;
+    }
+
+    public function fileStored(Request $request)
+    {
+        return $this->redirect(route('video.index', $this->channel));
     }
 
 }
