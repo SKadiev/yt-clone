@@ -19,6 +19,7 @@ class EditChannel extends Component
     public Channel $channel;
     public $image;
     protected $listeners = ['channelUpdate' => 'handleUpdate'];
+    public bool $uploadCompleted;
 
     protected function rules()
     {
@@ -44,5 +45,11 @@ class EditChannel extends Component
     {
         $channelRepository->saveChannel($this);
     }
+
+    public function fileUploaded(): bool
+    {
+        return $this->uploadCompleted = true;
+    }
+
 
 }

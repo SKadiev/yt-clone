@@ -37,9 +37,25 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item {{Route::is('/') ? 'active' : ''}}">
+                        <a class="nav-link"
+                           href="/">{{ config('app.name', 'Laravel')}} </a>
+                    </li>
+                    <li class="nav-item {{Route::is('video.index',auth()->user()->channel->slug ) ? 'active' : ''}}">
+                        <a class="nav-link"
+                           href="{{route('video.index',auth()->user()->channel->slug )}}"
+                        >Videos</a>
+                    </li>
+                    <li class="nav-item {{ Route::is('channel.edit',auth()->user()->channel->slug ) ? 'active' : ''}}">
+                        <a class="nav-link"
+                           href="{{route('channel.edit', auth()->user()->channel->slug)}}
+                               ">Channel</a>
+                    </li>
+                </ul>
+            </div>
             <button class="navbar-toggler" type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
@@ -48,7 +64,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse"
+                 id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
 
@@ -80,14 +97,18 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown"
-                               class="nav-link dropdown-toggle" href="#"
-                               role="button" data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false" v-pre>
+                               class="nav-link dropdown-toggle"
+                               href="#"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end"
-                                 aria-labelledby="navbarDropdown">
+                            <div
+                                class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item"
                                    href="{{ route('channel.edit', [ \Auth::user()->channel]) }}">
                                     {{Auth::user()->channel->name}}
@@ -105,7 +126,8 @@
 
                                 <form id="logout-form"
                                       action="{{ route('logout') }}"
-                                      method="POST" class="d-none">
+                                      method="POST"
+                                      class="d-none">
                                     @csrf
                                 </form>
                             </div>
