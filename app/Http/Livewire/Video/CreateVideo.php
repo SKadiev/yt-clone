@@ -32,7 +32,7 @@ class CreateVideo extends Component
 
     public function upload(VideoRepository $repository)
     {
-        $repository->saveChannel($this);
+        $repository->saveVideo($this);
     }
 
     public function fileUploaded(): bool
@@ -42,6 +42,12 @@ class CreateVideo extends Component
 
     public function fileStored(Request $request)
     {
+        $this->video = $this->channel->videos()->create([
+            'title' => 'untitled',
+            'description' => 'none',
+            'uid' => uniqid(true),
+            'visibility' => 'unlisted'
+        ]);
         return $this->redirect(route('video.index', $this->channel));
     }
 

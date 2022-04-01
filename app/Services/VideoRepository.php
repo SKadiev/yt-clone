@@ -10,9 +10,8 @@ use App\Models\Video;
 
 class VideoRepository
 {
-    public function saveChannel(CreateVideo $videoDTO): void
+    public function saveVideo(CreateVideo $videoDTO): void
     {
-        $videoDTO->validate();
         $videoDTO->validate();
         $videoDTO->videoFile->store('videos');
         //

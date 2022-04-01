@@ -1,3 +1,5 @@
 <div>
-    {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
+    @foreach($videos as $video)
+        <h1>{{$video->title}}</h1>
+    @endforeach
 </div>
