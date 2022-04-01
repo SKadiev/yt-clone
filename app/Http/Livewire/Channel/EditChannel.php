@@ -26,7 +26,7 @@ class EditChannel extends Component
             'channel.name' => 'required|string|min:4|max:50|unique:channels,name,' . $this->channel->id,
             'channel.slug' => 'required|string|min:4|max:50|unique:channels,slug,' . $this->channel->id,
             'channel.description' => 'nullable|string|max:1000',
-            'image' => 'nullable|image|max:1024',
+            'image' => 'nullable|image|max:5120',
         ];
     }
 

@@ -42,6 +42,5 @@ class ChannelRepository
         } else {
             throw new ImageNotStoredException();
         }
-
     }
 }
