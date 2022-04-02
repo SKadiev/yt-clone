@@ -7,6 +7,7 @@ use App\Exceptions\ImageNotStoredException;
 use App\Http\Livewire\Channel\EditChannel;
 use App\Http\Livewire\Video\CreateVideo;
 use App\Models\Video;
+use Illuminate\Support\Facades\Log;
 
 class VideoRepository
 {
@@ -14,7 +15,11 @@ class VideoRepository
     {
         $videoDTO->validate();
         $videoDTO->videoFile->store('videos');
-        //
+    }
+
+    public function log()
+    {
+        Log::info('service');
     }
 
 }

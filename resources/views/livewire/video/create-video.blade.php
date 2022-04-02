@@ -31,7 +31,7 @@
                         @error('videoFile')
                         <div class="alert alert-danger"> {{$message}}</div>
                         @enderror
-                        <button x-show="$wire.uploadCompleted" @click="$wire.fileStored" type="submit" class="btn btn-primary mb-2">
+                        <button x-show="$wire.uploadCompleted"  type="submit" class="btn btn-primary mb-2">
                             Submit
                         </button>
                     </form>

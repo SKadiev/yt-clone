@@ -40,20 +40,23 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item {{Route::is('/') ? 'active' : ''}}">
-                        <a class="nav-link"
-                           href="/">{{ config('app.name', 'Laravel')}} </a>
-                    </li>
-                    <li class="nav-item {{Route::is('video.index',auth()->user()->channel->slug ) ? 'active' : ''}}">
-                        <a class="nav-link"
-                           href="{{route('video.index',auth()->user()->channel->slug )}}"
-                        >Videos</a>
-                    </li>
-                    <li class="nav-item {{ Route::is('channel.edit',auth()->user()->channel->slug ) ? 'active' : ''}}">
-                        <a class="nav-link"
-                           href="{{route('channel.edit', auth()->user()->channel->slug)}}
-                               ">Channel</a>
-                    </li>
+                    @auth
+
+                        <li class="nav-item {{Route::is('/') ? 'active' : ''}}">
+                            <a class="nav-link"
+                               href="/">{{ config('app.name', 'Laravel')}} </a>
+                        </li>
+                        <li class="nav-item {{Route::is('video.index',auth()->user()->channel->slug ) ? 'active' : ''}}">
+                            <a class="nav-link"
+                               href="{{route('video.index',auth()->user()->channel->slug )}}"
+                            >Videos</a>
+                        </li>
+                        <li class="nav-item {{ Route::is('channel.edit',auth()->user()->channel->slug ) ? 'active' : ''}}">
+                            <a class="nav-link"
+                               href="{{route('channel.edit', auth()->user()->channel->slug)}}
+                                   ">Channel</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
             <button class="navbar-toggler" type="button"

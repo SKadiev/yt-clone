@@ -38,7 +38,8 @@ class EditChannel extends Component
 
     public function render()
     {
-        return view('livewire.channel.edit-channel');
+        return view('livewire.channel.edit-channel')
+            ->extends('layouts.app');
     }
 
     public function save(ChannelRepository $channelRepository)
