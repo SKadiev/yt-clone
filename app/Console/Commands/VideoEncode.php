@@ -33,7 +33,7 @@ class VideoEncode extends Command
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
         FFMpeg::fromDisk('videos')
-            ->open('koL6ANvqz0woMty6o05i3v7pQWKqAld1qJG00QQB.mp4')
+            ->open('mmAo0lqzKN3SyEgJzFSXZufZFy8y83ysFnjfye58.mp4')
             ->exportForHLS()
             ->addFormat($low, function ($media) {
                 $media->resize(640, 480);
@@ -44,7 +44,7 @@ class VideoEncode extends Command
             ->onProgress(function ($percentage) {
                 $this->info("Progress $percentage");
             })
-            ->save('/conversion/test.m3u8');
+            ->save('/temp/test.m3u8');
 
     }
 }

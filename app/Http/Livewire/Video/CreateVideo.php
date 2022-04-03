@@ -49,7 +49,7 @@ class CreateVideo extends Component
 
         return $this->redirect(
             route('video.edit', [$this->channel, $this->video])
-        )->with('message', "Video updated");
+        );
     }
 
 }

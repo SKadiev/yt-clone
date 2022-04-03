@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\VideoCreated;
+use App\Jobs\ConvertVideoForStreaming;
+use App\Jobs\CreateThumbnailFromVideo;
 use App\Jobs\ProccesVideo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,6 +30,8 @@ class VideoCreatedListener
      */
     public function handle(VideoCreated $event)
     {
-        ProccesVideo::dispatch($event->video, $event->channel);
+//        ProccesVideo::dispatch($event->video, $event->channel);
+        ConvertVideoForStreaming::dispatch($event->video);
+        CreateThumbnailFromVideo::dispatch($event->video);
     }
 }
