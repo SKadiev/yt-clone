@@ -15,11 +15,13 @@ class EditChannel extends Component
 {
     use AuthorizesRequests;
     use WithFileUploads;
+
     public string $name = 'tote';
     public Channel $channel;
     public $image;
     protected $listeners = ['channelUpdate' => 'handleUpdate'];
     public bool $uploadCompleted;
+    public $storagePath = '/photos';
 
     protected function rules()
     {

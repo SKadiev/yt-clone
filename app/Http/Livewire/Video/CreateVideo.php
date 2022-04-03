@@ -35,7 +35,7 @@ class CreateVideo extends Component
     public function upload(VideoRepository $repository, Request $request)
     {
         $repository->saveVideo($this);
-        $this->fileStored($request);
+        $this->videoStored($request);
     }
 
     public function fileUploaded(): bool
@@ -43,18 +43,13 @@ class CreateVideo extends Component
         return $this->uploadCompleted = true;
     }
 
-    public function fileStored(Request $request)
+    public function videoStored(Request $request)
     {
-        $this->video = $this->channel->videos()->create([
-            'title' => 'untitled',
-            'description' => 'none',
-            'uid' => uniqid(true),
-            'visibility' => 'unlisted'
-        ]);
-
         event(new VideoCreated($this->video, $this->channel));
 
-        return $this->redirect(route('video.edit', [$this->channel, $this->video]));
+        return $this->redirect(
+            route('video.edit', [$this->channel, $this->video])
+        )->with('message', "Video updated");
     }
 
 }

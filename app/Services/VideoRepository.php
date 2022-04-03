@@ -11,10 +11,19 @@ use Illuminate\Support\Facades\Log;
 
 class VideoRepository
 {
+    const VIDEO_STORE_PATH = 'videos';
+
     public function saveVideo(CreateVideo $videoDTO): void
     {
         $videoDTO->validate();
-        $videoDTO->videoFile->store('videos');
+        $videoPath = $videoDTO->videoFile->store(self::VIDEO_STORE_PATH);
+        $videoDTO->video = $videoDTO->channel->videos()->create([
+            'title' => 'untitled',
+            'description' => 'none',
+            'uid' => uniqid(true),
+            'visibility' => 'unlisted',
+            'path' => $videoPath
+        ]);
     }
 
     public function log()

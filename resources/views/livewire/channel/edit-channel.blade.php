@@ -1,6 +1,6 @@
 <div>
     @if($channel)
-        <img src="{{ asset($channel->image)}}">
+        <img src="{{  $channel->image}}">
     @endif
     <form wire:submit.prevent="save">
         <div class="form-group">
