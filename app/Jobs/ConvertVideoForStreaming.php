@@ -48,7 +48,18 @@ class ConvertVideoForStreaming implements ShouldQueue
             })
             ->addFormat($high, function ($media) {
                 $media->resize(1280, 720);
-            })->toDisk('videos')
+            })
+            ->onProgress(function ($progress) {
+                $this->video->update([
+                    'processing_percentage' => $progress
+                ]);
+            })
+            ->toDisk('videos')
             ->save($savePath);
+
+        $this->video->update([
+            'processed' => true,
+            'processed_file' => $this->video->uid . '.m3u8'
+        ]);
     }
 }

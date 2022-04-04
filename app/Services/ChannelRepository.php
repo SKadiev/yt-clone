@@ -20,7 +20,6 @@ class ChannelRepository
         $channelDTO->channel->save();
         try {
             $this->imageStore($channelDTO);
-            //                        session()->flash('message', 'Channel updated');
             ChannelUpdated::dispatch($channelDTO->channel);
         } catch (ImageNotStoredException $e) {
         }

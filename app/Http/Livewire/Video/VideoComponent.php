@@ -13,7 +13,6 @@ class VideoComponent extends Component
 
     public function render()
     {
-//FFMpeg::openUrl('https://videocoursebuilder.com/lesson-1.mp4');
         return view('livewire.video.video-component');
     }
 }

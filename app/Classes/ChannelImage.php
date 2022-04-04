@@ -20,7 +20,6 @@ class ChannelImage extends Image
     {
         if ($this->image) {
             $videoIdentifierName = $this->channel->uid;
-            $d =
             $image = $this->image->storeAs(
                 self::PHOTOS_DIRECTORY, $videoIdentifierName . '.' . self::IMAGE_EXTENSION,
                 self::BASE_PHOTO_DIRECTORY);
