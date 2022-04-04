@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row justify-content-center">
 
@@ -11,8 +12,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    Edit Video
-                    <form wire:submit.prevent="save">
+                    <form x-data="{ transformationCompeleted: false }"  wire:submit.prevent="save">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="video-thumbnail" src="{{$video->thumbnail}}" alt="{{$video->title}}">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <span x-text="$wire.processing_percentage"></span>
+                        </div>
                         <div class="form-group my-2">
                             <input wire:model="video.title" type="text">
                         </div>
@@ -44,7 +52,7 @@
                         @error('visibility')
                         <div class="alert alert-danger"> {{$message}}</div>
                         @enderror
-                        <button type="submit" class="btn btn-primary mb-2">
+                        <button x-show="transformationCompeleted" type="submit" class="btn btn-primary mb-2">
                             Submit
                         </button>
                     </form>

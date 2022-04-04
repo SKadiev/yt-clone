@@ -19,6 +19,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
 
+
+    <!-- Video js -->
+    <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
+
     <script defer
             src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -147,5 +154,6 @@
     </main>
 </div>
 @livewireScripts
+<script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
 </body>
 </html>

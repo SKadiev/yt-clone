@@ -21,4 +21,9 @@ class Video extends Model
         return 'uid';
     }
 
+    public function getThumbnailAttribute()
+    {
+        return asset('thumnails/' . $this->thumbnail_image);
+    }
+
 }

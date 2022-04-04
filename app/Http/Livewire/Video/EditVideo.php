@@ -15,6 +15,7 @@ class EditVideo extends Component
     public string $title;
     public string $description;
     public ChannelVisibility $visibility;
+    public string $processing_percentage = 'aaaa';
 
     public function render()
     {
@@ -36,5 +37,10 @@ class EditVideo extends Component
         $this->validate();
         $this->video->save();
 
+    }
+
+    public function getProgress()
+    {
+        $this->processing_percentage = 'Progress: ' . $this->video->processing_percentage . '%';
     }
 }

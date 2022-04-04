@@ -11295,3 +11295,8 @@ textarea.form-control-lg {
   height: 50px;
   width: 50px;
 }
+
+.video-thumbnail {
+  height: 200px;
+  width: 200px;
+}
