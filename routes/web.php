@@ -10,6 +10,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/channel/{channel}/edit', [\App\Http\Controllers\ChannelController::class, 'edit'])->name('channel.edit');
 
     Route::prefix('videos')->group(function () {
+        Route::get('/all', \App\Http\Livewire\Videos\GlobalVideos::class)->name('videos.global');
         Route::get('/{channel}/create', \App\Http\Livewire\Video\CreateVideo::class)->name('video.create');
         Route::get('/{channel}/{video}/edit', \App\Http\Livewire\Video\EditVideo::class)->name('video.edit');
         Route::get('/{channel}', \App\Http\Livewire\Video\AllVideo::class)->name('video.index');

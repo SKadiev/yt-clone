@@ -53,6 +53,10 @@
                             <a class="nav-link"
                                href="/">{{ config('app.name', 'Laravel')}} </a>
                         </li>
+                        <li class="nav-item {{Route::is('video.global') ? 'active' : ''}}">
+                            <a class="nav-link"
+                               href="{{ route('videos.global')}}">Global videos </a>
+                        </li>
                         <li class="nav-item {{Route::is('video.index',auth()->user()->channel->slug ) ? 'active' : ''}}">
                             <a class="nav-link"
                                href="{{route('video.index',auth()->user()->channel->slug )}}"
