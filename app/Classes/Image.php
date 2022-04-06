@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-class Image
+abstract class Image
 {
     protected const IMAGE_EXTENSION = 'png';
     protected const PHOTOS_DIRECTORY = 'photos';
@@ -11,5 +11,6 @@ class Image
     self::BASE_PHOTO_DIRECTORY . DIRECTORY_SEPARATOR .
     self::PHOTOS_DIRECTORY;
 
+    abstract public function imageStore(): void;
 
 }

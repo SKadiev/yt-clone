@@ -23,7 +23,7 @@ class Video extends Model
 
     public function getThumbnailAttribute()
     {
-        return asset('thumnails/' . $this->thumbnail_image);
+        return asset('thumnails/' . $this->image?->path);
     }
 
     public function image()
