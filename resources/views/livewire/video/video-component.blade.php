@@ -34,6 +34,9 @@
                                         >
                                     </p>
                                 </video>
+                                <a href="{{route('video.edit', [$video->channel, $video])}}">Edit</a>
+                                <a href="{{route('video.delete', [$video->channel, $video])}}">delete</a>
+
                             </div>
                         </div>
                         <footer class="blockquote-footer">Created at {{$video->created_at}}</footer>

@@ -11,6 +11,11 @@ class VideoComponent extends Component
 
     public Video $video;
 
+    public function mount(Video $video)
+    {
+        $this->video->load('channel');
+    }
+
     public function render()
     {
         return view('livewire.video.video-component');
