@@ -27,7 +27,7 @@ class Channel extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => asset(self::CHANEL_PHOTO_DIRECTORY . $value),
+            get: fn($value) => asset(self::CHANEL_PHOTO_DIRECTORY . $this->channelImage?->path),
         );
     }
 
@@ -35,4 +35,10 @@ class Channel extends Model
     {
         return $this->hasMany(Video::class);
     }
+
+    public function channelImage()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
 }

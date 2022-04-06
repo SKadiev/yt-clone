@@ -7,6 +7,7 @@ use App\Models\Channel;
 use App\Models\Video;
 use App\Services\VideoRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -46,9 +47,9 @@ class CreateVideo extends Component
     public function videoStored(Request $request)
     {
         event(new VideoCreated($this->video, $this->channel));
-
+        Cache::forget('channel_videos_' . $this->channel->slug);
         return $this->redirect(
-            route('video.edit', [$this->channel, $this->video])
+            route('video.index', [$this->channel])
         );
     }
 

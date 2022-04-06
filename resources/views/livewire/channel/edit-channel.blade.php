@@ -25,8 +25,7 @@
         @enderror
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea wire:model.lazy="channel.description"
-                      class="form-control mb-2" id="description"></textarea>
+            <textarea wire:model.lazy="channel.description" class="form-control mb-2" id="description"></textarea>
         </div>
         @error('channel.description')
         <div class="alert alert-danger">

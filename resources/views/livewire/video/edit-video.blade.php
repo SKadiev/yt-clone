@@ -52,7 +52,7 @@
                         @error('visibility')
                         <div class="alert alert-danger"> {{$message}}</div>
                         @enderror
-                        <button x-show="transformationCompeleted" type="submit" class="btn btn-primary mb-2">
+                        <button  type="submit" class="btn btn-primary mb-2">
                             Submit
                         </button>
                     </form>

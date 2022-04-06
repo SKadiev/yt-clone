@@ -22,7 +22,7 @@
                                     preload="auto"
                                     width="640"
                                     height="264"
-                                    poster="MY_VIDEO_POSTER.jpg"
+{{--                                    poster="{{ $video->path}}"--}}
                                     data-setup="{}"
                                 >
                                     <source src="{{asset('videos/temp/' . $video->path)}}" type="video/mp4">

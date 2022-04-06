@@ -28,10 +28,11 @@ class VideoCreatedListener
      * @param  \App\Events\VideoCreated  $event
      * @return void
      */
+
     public function handle(VideoCreated $event)
     {
 //        ProccesVideo::dispatch($event->video, $event->channel);
-        ConvertVideoForStreaming::dispatch($event->video);
+        ConvertVideoForStreaming::dispatch($event->video)->onQueue('test');
         CreateThumbnailFromVideo::dispatch($event->video);
     }
 }

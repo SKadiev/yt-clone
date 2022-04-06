@@ -20,18 +20,20 @@ class ChannelImage extends Image
     {
         if ($this->image) {
             $videoIdentifierName = $this->channel->uid;
-            $image = $this->image->storeAs(
-                self::PHOTOS_DIRECTORY, $videoIdentifierName . '.' . self::IMAGE_EXTENSION,
-                self::BASE_PHOTO_DIRECTORY);
+            $image = $this->image->store(self::PHOTOS_DIRECTORY, self::BASE_PHOTO_DIRECTORY);
             $image = explode('/', $image)[1];
 
-            $imgStoragePath = storage_path(self::FULL_PHOTOS_DIRECTORY );
+            $imgStoragePath = storage_path(self::FULL_PHOTOS_DIRECTORY);
             $img = ImageMenager::make($imgStoragePath . '/' . $image)
                 ->encode(self::IMAGE_EXTENSION)
                 ->fit(100, 100, function ($constraint) {
                     $constraint->upsize();
                 })->save();
-            $this->channel->update(['image' => $image]);
+//            $this->channel->update(['image' => $image]);
+//            dd( $this->channel->channelImage->path, $image);
+            $this->channel->channelImage()->updateOrCreate(['path' => $this->channel->channelImage?->path ], [
+                'path' => $image
+            ]);
         } else {
             throw new ImageNotStoredException();
         }

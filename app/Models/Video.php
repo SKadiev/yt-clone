@@ -26,4 +26,9 @@ class Video extends Model
         return asset('thumnails/' . $this->thumbnail_image);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
 }
