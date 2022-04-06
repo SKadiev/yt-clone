@@ -16,7 +16,7 @@ class EditVideo extends Component
     public string $title;
     public string $description;
     public ChannelVisibility $visibility;
-    public string $processing_percentage = 'aaaa';
+    public string $processing_percentage = '';
 
     public function render()
     {

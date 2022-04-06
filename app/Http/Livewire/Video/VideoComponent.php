@@ -15,7 +15,6 @@ class VideoComponent extends Component
 
     public function mount(Video $video)
     {
-        $this->video->load('channel');
     }
 
     public function render()
@@ -29,9 +28,11 @@ class VideoComponent extends Component
 
         if ($deleted) {
             Storage::disk('videos-temp')->delete($video->path);
+            Storage::disk('thumnails')->delete($video->path);
+
             $video->delete();
             Cache::forget('channel_videos_' . $this->video->channel->slug);
-            $this->emitUp('refresh');
+            $this->emitUp('videos:remove');
         }
 
         return back();
