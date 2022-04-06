@@ -35,6 +35,7 @@ class VideoComponent extends Component
 
             $video->delete();
             Cache::forget('channel_videos_' . $this->video->channel->slug);
+            Cache::forget('channel_videos_global');
             $this->emitUp('videos:remove');
         }
 

@@ -42,6 +42,7 @@ class EditVideo extends Component
     {
         $this->validate();
         Cache::forget('channel_videos_' . $this->channel->slug);
+        Cache::forget('channel_videos_global');
         $this->video->save();
 
     }
