@@ -5,12 +5,15 @@ namespace App\Http\Livewire\Video;
 use App\Enum\ChannelVisibility;
 use App\Models\Channel;
 use App\Models\Video;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rules\Enum;
 use Livewire\Component;
 
 class EditVideo extends Component
 {
+    use AuthorizesRequests;
+
     public Video $video;
     public Channel $channel;
     public string $title;
@@ -20,6 +23,8 @@ class EditVideo extends Component
 
     public function render()
     {
+        $this->authorize('update', $this->video);
+
         return view('livewire.video.edit-video')
             ->extends('layouts.app');
     }
