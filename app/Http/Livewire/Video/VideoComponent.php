@@ -4,13 +4,15 @@ namespace App\Http\Livewire\Video;
 
 use App\Models\Video;
 use FFMpeg\FFMpeg;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\Guard;
 use Livewire\Component;
 
 class VideoComponent extends Component
 {
-
+    use AuthorizesRequests;
     public Video $video;
 
     public function mount(Video $video)
@@ -24,6 +26,7 @@ class VideoComponent extends Component
 
     public function delete(Video $video)
     {
+        $this->authorize('delete', $video);
         $deleted = Storage::disk('videos')->deleteDirectory('/convertions/' . $video->uid);
 
         if ($deleted) {
@@ -35,6 +38,6 @@ class VideoComponent extends Component
             $this->emitUp('videos:remove');
         }
 
-        return back();
+        return back('201');
     }
 }
