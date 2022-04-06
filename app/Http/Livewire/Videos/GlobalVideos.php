@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Videos;
 
+use App\Enum\ChannelVisibility;
 use App\Models\Channel;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,7 +21,7 @@ class GlobalVideos extends Component
     public function loadVideos()
     {
         $videos = Cache::remember('channel_videos_global', 60, function ()  {
-            return Video::all();
+            return Video::where('visibility', ChannelVisibility::PUBLIC->value)->get();
         });
 
         return $videos;

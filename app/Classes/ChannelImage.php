@@ -11,7 +11,7 @@ use Livewire\TemporaryUploadedFile;
 class ChannelImage extends Image
 {
 
-    public function __construct(protected Channel $channel, private TemporaryUploadedFile $image)
+    public function __construct(protected Channel $channel, private ?TemporaryUploadedFile $image)
     {
 
     }
