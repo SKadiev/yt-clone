@@ -34,8 +34,9 @@
                                         >
                                     </p>
                                 </video>
-                                <a href="{{route('video.edit', [$video->channel, $video])}}">Edit</a>
-                                <a href="{{route('video.delete', [$video->channel, $video])}}">delete</a>
+                                <a href="{{route('video.edit', [$video->channel, $video])}}" class="my-2 btn btn-light btn-sm">Edit</a>
+
+                                <a  wire:click.prevent="delete('{{$video->uid}}')"  class="my-2 btn btn-danger btn-sm">Delete</a>
 
                             </div>
                         </div>

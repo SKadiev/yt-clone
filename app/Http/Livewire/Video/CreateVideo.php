@@ -49,7 +49,7 @@ class CreateVideo extends Component
         event(new VideoCreated($this->video, $this->channel));
         Cache::forget('channel_videos_' . $this->channel->slug);
         return $this->redirect(
-            route('video.index', [$this->channel])
+            route('video.edit', [$this->channel, $this->video])
         );
     }
 

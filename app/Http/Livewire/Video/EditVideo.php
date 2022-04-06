@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Video;
 use App\Enum\ChannelVisibility;
 use App\Models\Channel;
 use App\Models\Video;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\Rules\Enum;
 use Livewire\Component;
 
@@ -35,6 +36,7 @@ class EditVideo extends Component
     public function save()
     {
         $this->validate();
+        Cache::forget('channel_videos_' . $this->channel->slug);
         $this->video->save();
 
     }
