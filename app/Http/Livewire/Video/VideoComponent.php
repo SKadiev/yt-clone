@@ -28,7 +28,7 @@ class VideoComponent extends Component
 
         if ($deleted) {
             Storage::disk('videos-temp')->delete($video->path);
-            Storage::disk('thumnails')->delete($video->path);
+            Storage::disk('thumnails')->delete($video->image->path);
 
             $video->delete();
             Cache::forget('channel_videos_' . $this->video->channel->slug);
