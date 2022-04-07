@@ -1,10 +1,14 @@
-
 <div class="container">
     <div class="row justify-content-center">
 
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Edit video') }}</div>
+                <div @if($video->processing_percentage < 100)
+                     wire:poll.750ms
+                     @endif
+                     class="card-header">
+                    {{ __('Edit video') }}
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -12,14 +16,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form x-data="{ transformationCompeleted: false }"  wire:submit.prevent="save">
+                    <form x-data="{ transformationInProgress: true }" wire:submit.prevent="save">
                         <div class="row">
                             <div class="col-md-4">
                                 <img class="video-thumbnail" src="{{$video->thumbnail}}" alt="{{$video->title}}">
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <span x-text="$wire.processing_percentage"></span>
+                            <span x-show="$wire.videoProccessing" x-text="$wire.processing_percentage"></span>
+                        </div>
+
+                        <div class="progress my-2" x-show="$wire.videoProccessing">
+                            <div class="progress-bar" role="progressbar"
+                                 :style="`width: {{$video->processing_percentage}}%`">
+                            </div>
                         </div>
                         <div class="form-group my-2">
                             <input wire:model="video.title" type="text">
@@ -52,7 +62,7 @@
                         @error('visibility')
                         <div class="alert alert-danger"> {{$message}}</div>
                         @enderror
-                        <button  type="submit" class="btn btn-primary mb-2">
+                        <button type="submit" class="btn btn-primary mb-2" >
                             Submit
                         </button>
                     </form>

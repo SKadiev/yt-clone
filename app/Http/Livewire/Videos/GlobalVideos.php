@@ -8,30 +8,25 @@ use App\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class GlobalVideos extends Component
 {
-    public Collection  $videos;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->videos = $this->loadVideos();
-    }
+    const PAGINATION_RESULTS_PER_PAGE = 2;
+    protected string $paginationTheme = 'bootstrap';
 
     public function loadVideos()
     {
-        $videos = Cache::remember('channel_videos_global', 60, function ()  {
-            return Video::where('visibility', ChannelVisibility::PUBLIC->value)->get();
-        });
-
-        return $videos;
+        return Video::paginate(self::PAGINATION_RESULTS_PER_PAGE);
     }
 
     public function render()
     {
-
-        return view('livewire.video.all-video')
-            ->extends('layouts.app');
+        return view('livewire.video.all-video', [
+            'videos' => $this->loadVideos()
+        ])->extends('layouts.app');
     }
 
 }

@@ -7,34 +7,31 @@ use App\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AllVideo extends Component
 {
-    public Collection  $videos;
+    use WithPagination;
+
+    const PAGINATION_RESULTS_PER_PAGE = 2;
+    private $videos;
     public Channel $channel;
+    protected string $paginationTheme = 'bootstrap';
 
     public $listeners = [
         'videos:remove' => 'loadVideos',
     ];
-    public function mount(Channel $channel)
-    {
-        $this->videos = $this->loadVideos();
-    }
 
     public function loadVideos()
     {
-        $videos = Cache::rememberForever('channel_videos_' . $this->channel->slug, function ()  {
-            return $this->channel->videos;
-        });
-
-        return $videos;
+        return $this->channel->videos()->paginate(self::PAGINATION_RESULTS_PER_PAGE);
     }
 
     public function render()
     {
-
-        return view('livewire.video.all-video')
-            ->extends('layouts.app');
+        return view('livewire.video.all-video', [
+            'videos' => $this->loadVideos()
+        ])->extends('layouts.app');
     }
 
 }

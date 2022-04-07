@@ -20,6 +20,7 @@ class EditVideo extends Component
     public string $description;
     public ChannelVisibility $visibility;
     public string $processing_percentage = '';
+    public ?bool $videoProccessing;
 
     public function render()
     {
@@ -27,6 +28,11 @@ class EditVideo extends Component
 
         return view('livewire.video.edit-video')
             ->extends('layouts.app');
+    }
+
+    public function mount(Video $video)
+    {
+        $this->videoProccessing = !$video->processed;
     }
 
     protected function rules()
@@ -45,10 +51,17 @@ class EditVideo extends Component
         Cache::forget('channel_videos_global');
         $this->video->save();
 
+        return back()->with('message', 'Video info updated!');
+
     }
 
-    public function getProgress()
+    public function getLoadingProgress()
     {
         $this->processing_percentage = 'Progress: ' . $this->video->processing_percentage . '%';
+    }
+
+    public function hydrate()
+    {
+        $this->getLoadingProgress();
     }
 }

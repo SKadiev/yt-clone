@@ -11300,3 +11300,7 @@ textarea.form-control-lg {
   height: 200px;
   width: 200px;
 }
+
+pagination-nav {
+  background: none;
+}

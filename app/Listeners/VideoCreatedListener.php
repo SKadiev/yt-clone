@@ -32,7 +32,7 @@ class VideoCreatedListener
     public function handle(VideoCreated $event)
     {
 //        ProccesVideo::dispatch($event->video, $event->channel);
-        ConvertVideoForStreaming::dispatch($event->video)->onQueue('test');
+        ConvertVideoForStreaming::dispatch($event->video)->onQueue('default');
         CreateThumbnailFromVideo::dispatch($event->video);
     }
 }
