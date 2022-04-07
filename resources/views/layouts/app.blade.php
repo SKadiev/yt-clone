@@ -156,7 +156,8 @@
         @yield('content')
     </main>
 </div>
-@livewireScripts
 @stack('video-stack')
+@livewireScripts
+
 </body>
 </html>

@@ -37,7 +37,7 @@ class ConvertVideoForStreaming implements ShouldQueue
      */
     public function handle()
     {
-        $savePath = '/convertions/' . $this->video->uid .'/' . $this->video->uid . '.m3ub';
+        $savePath = '/convertions/' . $this->video->uid .'/' . $this->video->uid . '.m3u8';
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
         FFMpeg::fromDisk('videos-temp')

@@ -96,8 +96,9 @@ return [
     'links' => [
 //        public_path('storage') => storage_path('app/public'),
         public_path('photos') => storage_path('app/public/photos'),
-        public_path('videos') => storage_path('app/videos'),
+        public_path('videos') => storage_path('app/videos/convertions'),
         public_path('thumnails') => storage_path('app/photos-thumbnails'),
+        public_path('conve') => storage_path('app/photos-thumbnails'),
 
     ],
 
