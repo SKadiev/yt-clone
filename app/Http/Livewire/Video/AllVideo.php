@@ -13,7 +13,7 @@ class AllVideo extends Component
 {
     use WithPagination;
 
-    const PAGINATION_RESULTS_PER_PAGE = 2;
+    const PAGINATION_RESULTS_PER_PAGE = 5;
     private $videos;
     public Channel $channel;
     protected string $paginationTheme = 'bootstrap';

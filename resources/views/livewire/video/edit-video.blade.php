@@ -22,6 +22,7 @@
                                 <img class="video-thumbnail" src="{{$video->thumbnail}}" alt="{{$video->title}}">
                             </div>
                         </div>
+
                         <div class="col-md-8">
                             <span x-show="$wire.videoProccessing" x-text="$wire.processing_percentage"></span>
                         </div>
@@ -65,6 +66,11 @@
                         <button type="submit" class="btn btn-primary mb-2" >
                             Submit
                         </button>
+                        @if(session()->has('message'))
+                            <div class="mt-2 mb-2 alert alert-success">
+                                {{session('message')}}
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>

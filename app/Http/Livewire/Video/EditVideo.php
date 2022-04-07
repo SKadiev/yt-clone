@@ -50,8 +50,8 @@ class EditVideo extends Component
         Cache::forget('channel_videos_' . $this->channel->slug);
         Cache::forget('channel_videos_global');
         $this->video->save();
-
-        return back()->with('message', 'Video info updated!');
+//        return redirect()->back()->with('message', 'Video info updated!');
+        return redirect()->route('video.edit', [$this->channel, $this->video])->with('message', 'Video info updated!');
 
     }
 

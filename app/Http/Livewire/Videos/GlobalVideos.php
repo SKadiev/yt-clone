@@ -14,7 +14,7 @@ class GlobalVideos extends Component
 {
     use WithPagination;
 
-    const PAGINATION_RESULTS_PER_PAGE = 2;
+    const PAGINATION_RESULTS_PER_PAGE = 5;
     protected string $paginationTheme = 'bootstrap';
 
     public function loadVideos()
