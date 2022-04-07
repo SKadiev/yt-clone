@@ -1,6 +1,6 @@
 <div  xmlns:livewire="http://www.w3.org/1999/html">
     @forelse($videos as $video)
-        <li wire:key="video-id-{{ $video->uid }}">
+        <li  class="col-md-4 offset-3" wire:key="video-id-{{ $video->uid }}">
             <livewire:video.video-component :video="$video" wire:key="video-component-{{ $video->uid }}"/>
         </li>
         @empty

@@ -21,7 +21,7 @@
 
 
     <!-- Video js -->
-    <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
+    <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet"/>
 
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
     <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
@@ -48,14 +48,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     @auth
-
                         <li class="nav-item {{Route::is('/') ? 'active' : ''}}">
                             <a class="nav-link"
                                href="/">{{ config('app.name', 'Laravel')}} </a>
-                        </li>
-                        <li class="nav-item {{Route::is('video.global') ? 'active' : ''}}">
-                            <a class="nav-link"
-                               href="{{ route('videos.global')}}">Global videos </a>
                         </li>
                         <li class="nav-item {{Route::is('video.index',auth()->user()->channel->slug ) ? 'active' : ''}}">
                             <a class="nav-link"
@@ -68,6 +63,10 @@
                                    ">Channel</a>
                         </li>
                     @endauth
+                    <li class="nav-item {{Route::is('video.global') ? 'active' : ''}}">
+                        <a class="nav-link"
+                           href="{{ route('videos.global')}}">Global videos </a>
+                    </li>
                 </ul>
             </div>
             <button class="navbar-toggler" type="button"
@@ -158,6 +157,6 @@
     </main>
 </div>
 @livewireScripts
-<script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
+@stack('video-stack')
 </body>
 </html>

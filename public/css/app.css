@@ -11304,3 +11304,7 @@ textarea.form-control-lg {
 pagination-nav {
   background: none;
 }
+
+li {
+  list-style: none;
+}
