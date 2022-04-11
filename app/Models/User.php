@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Channel::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

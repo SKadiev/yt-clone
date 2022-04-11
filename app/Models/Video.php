@@ -43,6 +43,17 @@ class Video extends Model
         return $this->morphToMany(Comment::class, 'commentable');
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany(Dislike::class);
+    }
+
+
     public function getUploatedDateAttribute()
     {
         $d = new Carbon($this->created_at);

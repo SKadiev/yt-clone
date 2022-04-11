@@ -7,7 +7,13 @@ use Livewire\Component;
 
 class WatchVideo extends Component
 {
-    public Video $video;
+    public $video;
+
+    public function mount($video)
+    {
+//       dd(Video::whereUid($video)->withCount(['likes', 'dislikes'])->first());
+        $this->video =Video::whereUid($video)->withCount(['likes', 'dislikes'])->first();
+    }
 
     protected $listeners = [
       'videoViewed' => 'countView'
