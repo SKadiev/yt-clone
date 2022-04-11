@@ -15,10 +15,6 @@ class VideoComponent extends Component
     use AuthorizesRequests;
     public Video $video;
 
-    public function mount(Video $video)
-    {
-    }
-
     public function render()
     {
         return view('livewire.video.video-component');

@@ -6,6 +6,7 @@ use App\Classes\Traits\WithLayoutRendering;
 use App\Models\User;
 use App\Models\Video;
 use Livewire\Component;
+use Nette\Utils\Paginator;
 
 class Voting extends Component
 {
@@ -33,11 +34,22 @@ class Voting extends Component
         return $this->renderWithLayout('livewire.video.voting');
     }
 
+
     public function likeVideo()
     {
-        $this->video->likes()->create([
-            'user_id' => auth()->user()->id
-        ]);
+        if ($this->video->doesUserLikeVideo()) {
+
+            $this->video->likes()->delete();
+
+        } else {
+            if ($this->video->doesUserDislikeVideo()) {
+                $this->video->dislikes()->delete();
+                $this->dislikes = $this->dislikes - 1;
+            }
+            $this->video->likes()->create([
+                'user_id' => auth()->user()->id
+            ]);
+        }
 
         $this->likes = $this->video->likes()->count();
 
@@ -45,9 +57,17 @@ class Voting extends Component
 
     public function dislikeVideo()
     {
-        $this->video->dislikes()->create([
-            'user_id' => auth()->user()->id
-        ]);
+        if ($this->video->doesUserDislikeVideo()) {
+            $this->video->dislikes()->delete();
+        } else {
+            if ($this->video->doesUserLikeVideo()) {
+                $this->video->likes()->delete();
+                $this->likes = $this->likes - 1;
+            }
+            $this->video->dislikes()->create([
+                'user_id' => auth()->user()->id
+            ]);
+        }
 
         $this->dislikes = $this->video->dislikes()->count();
 

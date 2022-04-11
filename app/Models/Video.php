@@ -60,4 +60,15 @@ class Video extends Model
         return $d->toFormattedDateString();
     }
 
+    public function doesUserLikeVideo()
+    {
+        return $this->likes()->whereUserId(auth()->id())->exists();
+    }
+
+    public function doesUserDislikeVideo()
+    {
+        return $this->dislikes()->whereUserId(auth()->id())->exists();
+    }
+
+
 }

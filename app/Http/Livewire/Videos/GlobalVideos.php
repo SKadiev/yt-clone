@@ -21,7 +21,7 @@ class GlobalVideos extends Component
 
     public function loadVideos()
     {
-        return Video::publicVideos()->orderByDesc('views')->paginate(self::PAGINATION_RESULTS_PER_PAGE);
+        return Video::publicVideos()->orderByDesc('views')->with(['channel', 'image'])->paginate(self::PAGINATION_RESULTS_PER_PAGE);
     }
 
     public function render()
