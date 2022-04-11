@@ -1,8 +1,8 @@
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row ">
         <div class="col-md-12">
             <div class="video-container">
-                <div class="video-container">
+                <div   wire:ignore class="video-container">
                     <video
                         id="yt-video"
                         class="video-js vjs-fluid vjs-styles=defaults vjs-big-play-centered"
@@ -10,7 +10,6 @@
                         preload="auto"
                         width="640"
                         height="264"
-                        {{--                                    poster="{{ $video->path}}"--}}
                         data-setup="{}"
                     >
                         <source src="{{asset('videos/' . $video->uid . '/' . $video->processed_file)}}"
@@ -24,7 +23,26 @@
                             >
                         </p>
                     </video>
+
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{{$video->title}}</h3>
+                    <p>{{$video->views}} views . {{$video->created_at}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12"></div>
             </div>
         </div>
     </div>
@@ -32,4 +50,13 @@
 
 @push('video-stack')
     <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
+    <script>
+        let player = videojs('yt-video')
+        player.on('timeupdate', function () {
+            if (this.currentTime() > 3) {
+                this.off('timeupdate');
+                Livewire.emit('videoViewed');
+            }
+        })
+    </script>
 @endpush

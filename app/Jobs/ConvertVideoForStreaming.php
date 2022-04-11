@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\ChannelUpdated;
 use App\Models\Video;
 use FFMpeg\Format\Video\X264;
 use Illuminate\Bus\Queueable;
@@ -61,5 +62,6 @@ class ConvertVideoForStreaming implements ShouldQueue
             'processed' => true,
             'processed_file' => $this->video->uid . '.m3u8'
         ]);
+
     }
 }

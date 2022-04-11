@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Video;
 
+use App\Classes\Traits\WithLayoutRendering;
 use App\Models\Channel;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
@@ -12,6 +13,7 @@ use Livewire\WithPagination;
 class AllVideo extends Component
 {
     use WithPagination;
+    use WithLayoutRendering;
 
     const PAGINATION_RESULTS_PER_PAGE = 5;
     private $videos;
@@ -29,9 +31,9 @@ class AllVideo extends Component
 
     public function render()
     {
-        return view('livewire.video.all-video', [
-            'videos' => $this->loadVideos()
-        ])->extends('layouts.app');
+        $videos = $this->loadVideos();
+        return $this->renderWithLayout('livewire.video.all-video', compact('videos'));
+
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Videos;
 
+use App\Classes\Traits\WithLayoutRendering;
 use App\Enum\ChannelVisibility;
 use App\Models\Channel;
 use App\Models\Video;
@@ -13,20 +14,20 @@ use Livewire\WithPagination;
 class GlobalVideos extends Component
 {
     use WithPagination;
+    use WithLayoutRendering;
 
     const PAGINATION_RESULTS_PER_PAGE = 5;
     protected string $paginationTheme = 'bootstrap';
 
     public function loadVideos()
     {
-        return Video::paginate(self::PAGINATION_RESULTS_PER_PAGE);
+        return Video::publicVideos()->paginate(self::PAGINATION_RESULTS_PER_PAGE);
     }
 
     public function render()
     {
-        return view('livewire.video.all-video', [
-            'videos' => $this->loadVideos()
-        ])->extends('layouts.app');
+        $videos = $this->loadVideos();
+        return $this->renderWithLayout('livewire.video.all-video', compact('videos'));
     }
 
 }

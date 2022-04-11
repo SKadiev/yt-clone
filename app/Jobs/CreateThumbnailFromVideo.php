@@ -44,5 +44,6 @@ class CreateThumbnailFromVideo implements ShouldQueue
         $this->video->image()->updateOrCreate(['path' => $this->video->image?->path], [
             'path' => $destination
         ]);
+
     }
 }
