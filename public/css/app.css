@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
@@ -11307,11 +11308,5 @@ pagination-nav {
 
 li {
   list-style: none;
-}
-
-.video-container {
-    width: 100%;
-    height: 490px;
-    position: relative;
 }
 

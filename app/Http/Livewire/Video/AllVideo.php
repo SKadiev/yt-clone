@@ -26,7 +26,7 @@ class AllVideo extends Component
 
     public function loadVideos()
     {
-        return $this->channel->videos()->paginate(self::PAGINATION_RESULTS_PER_PAGE);
+        return $this->channel->videos()->orderByDesc('views')->paginate(self::PAGINATION_RESULTS_PER_PAGE);
     }
 
     public function render()

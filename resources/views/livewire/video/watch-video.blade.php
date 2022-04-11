@@ -1,8 +1,11 @@
+@push('css')
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+@endpush
 <div class="container">
     <div class="row ">
         <div class="col-md-12">
-            <div class="video-container">
-                <div   wire:ignore class="video-container">
+{{--            <div class="video-container">--}}
+                <div wire:ignore class="video-container">
                     <video
                         id="yt-video"
                         class="video-js vjs-fluid vjs-styles=defaults vjs-big-play-centered"
@@ -23,8 +26,7 @@
                             >
                         </p>
                     </video>
-
-                </div>
+{{--                </div>--}}
             </div>
         </div>
     </div>
@@ -35,28 +37,34 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>{{$video->title}}</h3>
-                    <p>{{$video->views}} views . {{$video->created_at}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="mt-4">{{$video->title}}</h3>
+                            <p class="gray-text">{{$video->views}} views . {{$video->uploated_date}}</p>
+                        </div>
+                        <div >
+                            <livewire:video.voting :video="$video" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12"></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-12"></div>
-            </div>
-        </div>
     </div>
-</div>
 
-@push('video-stack')
-    <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
-    <script>
-        let player = videojs('yt-video')
-        player.on('timeupdate', function () {
-            if (this.currentTime() > 3) {
-                this.off('timeupdate');
-                Livewire.emit('videoViewed');
-            }
-        })
-    </script>
+    @push('video-stack')
+        <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
+        <script>
+            let player = videojs('yt-video')
+            player.on('timeupdate', function () {
+                if (this.currentTime() > 3) {
+                    this.off('timeupdate');
+                    Livewire.emit('videoViewed');
+                }
+            })
+        </script>
 @endpush

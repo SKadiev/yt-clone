@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <span
-                        class="blockquote-footer">Created at {{$video->created_at}}</span>
+                        class="blockquote-footer">{{$video->views}} views .  {{$video->uploated_date}}</span>
                 </div>
             </div>
         </div>

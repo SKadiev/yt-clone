@@ -152,11 +152,12 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main >
         @yield('content')
     </main>
 </div>
 @stack('video-stack')
+@stack('css')
 @livewireScripts
 
 </body>
