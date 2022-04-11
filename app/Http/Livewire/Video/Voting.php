@@ -38,12 +38,11 @@ class Voting extends Component
     public function likeVideo()
     {
         if ($this->video->doesUserLikeVideo()) {
-
-            $this->video->likes()->delete();
+            $this->video->likes()->currentUser()->delete();
 
         } else {
             if ($this->video->doesUserDislikeVideo()) {
-                $this->video->dislikes()->delete();
+                $this->video->dislikes()->currentUser()->delete();
                 $this->dislikes = $this->dislikes - 1;
             }
             $this->video->likes()->create([
@@ -58,10 +57,10 @@ class Voting extends Component
     public function dislikeVideo()
     {
         if ($this->video->doesUserDislikeVideo()) {
-            $this->video->dislikes()->delete();
+            $this->video->dislikes()->currentUser()->delete();
         } else {
             if ($this->video->doesUserLikeVideo()) {
-                $this->video->likes()->delete();
+                $this->video->likes()->currentUser()->delete();
                 $this->likes = $this->likes - 1;
             }
             $this->video->dislikes()->create([

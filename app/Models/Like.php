@@ -22,4 +22,9 @@ class Like extends Model
     {
         return $this->belongsTo(Video::class);
     }
+
+    public function scopeCurrentUser($query)
+    {
+        return $query->where('user_id', auth()->id());
+    }
 }
