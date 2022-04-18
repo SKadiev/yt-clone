@@ -14,7 +14,9 @@
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
         "pbmedia/laravel-ffmpeg": "^8.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "tote/kafka-queue": "dev-master"
+
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
@@ -25,6 +27,12 @@
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/SKadiev/kafka-queue.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/",

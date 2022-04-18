@@ -52,4 +52,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function subscribedChannels()
+    {
+        return $this->belongsToMany(Channel::class, 'subscriptions');
+    }
+
+    public function isSubscribedTo(Channel $channel)
+    {
+        return (bool)$this->subscriptions()->whereChannelId($channel->id)->count();
+    }
+
 }

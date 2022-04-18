@@ -11,12 +11,11 @@ class WatchVideo extends Component
 
     public function mount($video)
     {
-//       dd(Video::whereUid($video)->withCount(['likes', 'dislikes'])->first());
-        $this->video =Video::whereUid($video)->withCount(['likes', 'dislikes'])->first();
+        $this->video = Video::whereUid($video)->withCount(['likes as likes', 'dislikes as dislikes'])->first();
     }
 
     protected $listeners = [
-      'videoViewed' => 'countView'
+        'videoViewed' => 'countView'
     ];
 
     public function render()

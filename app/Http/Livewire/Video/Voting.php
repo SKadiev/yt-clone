@@ -25,8 +25,8 @@ class Voting extends Component
 
     public function mount()
     {
-        $this->likes = $this->video->likes_count;
-        $this->dislikes = $this->video->dislikes_count;
+        $this->likes = $this->video->likes;
+        $this->dislikes = $this->video->dislikes;
     }
 
     public function render()

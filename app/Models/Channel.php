@@ -11,6 +11,7 @@ class Channel extends Model
     use HasFactory;
 
     private const CHANEL_PHOTO_DIRECTORY = 'photos/';
+    const DEFAULT_USER_IMG = 'default_user.jpg';
 
     protected $guarded = [];
 
@@ -26,8 +27,10 @@ class Channel extends Model
 
     protected function image(): Attribute
     {
+        $channelImagePath = $this->channelImage->path ?? self::DEFAULT_USER_IMG;
+
         return Attribute::make(
-            get: fn($value) => asset(self::CHANEL_PHOTO_DIRECTORY . $this->channelImage?->path),
+            get: fn($value) => asset(self::CHANEL_PHOTO_DIRECTORY . $channelImagePath),
         );
     }
 
@@ -39,6 +42,16 @@ class Channel extends Model
     public function channelImage()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function subscribers()
+    {
+        return $this->subscriptions()->count();
     }
 
 }
