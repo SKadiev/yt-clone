@@ -54,6 +54,13 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <livewire:comment.comment-info :channel="$video->channel"/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

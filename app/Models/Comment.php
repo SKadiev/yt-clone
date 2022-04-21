@@ -9,8 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function videos()
+    public function commentable()
     {
-        return $this->morphedByMany(Video::class, 'commentable');
+        return $this->morphTo();
     }
 }

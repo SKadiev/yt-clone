@@ -8,7 +8,7 @@ use Livewire\Component;
 class ChannelInfo extends Component
 {
     public Channel $channel;
-    public string $isActive;
+    public  $isActive;
 
     public function render()
     {
@@ -24,14 +24,14 @@ class ChannelInfo extends Component
     public function subscribe()
     {
         if (auth()->user()->isSubscribedTo($this->channel)) {
+            $this->isActive = false;
             $this->channel->subscriptions()->where('user_id', auth()->id())->delete();
         } else {
+            $this->isActive = true;
             $this->channel->subscriptions()->create([
                 'user_id' => auth()->id()
             ]);
         }
-
-        $this->isActive = $this->isSubcribed();
     }
 
     public function isSubcribed()

@@ -11,8 +11,8 @@
 
         <div>
             <button wire:click.prevent="subscribe"
-                    class="btn btn-lg text-uppercase btn-secondary {{$isActive ? 'activeSubcribeBtn' : ''}}">
-                Subscribe
+                    class="btn btn-lg text-uppercase btn-secondary {{$isActive ? 'subscribeBtn' : 'activeSusbcribeBtn'}}">
+                {{$isActive ? 'Subscribed' : 'Subscribe'}}
             </button>
         </div>
     </div>

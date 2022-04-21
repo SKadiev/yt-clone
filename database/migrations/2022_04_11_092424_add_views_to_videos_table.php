@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->bigInteger('views');
+            $table->bigInteger('views')->default(0);
         });
     }
 
