@@ -8,10 +8,13 @@ use Livewire\Component;
 class WatchVideo extends Component
 {
     public $video;
+    public int $videoCommentsCount;
+    public $comments;
 
     public function mount($video)
     {
-        $this->video = Video::whereUid($video)->withCount(['likes as likes', 'dislikes as dislikes'])->first();
+        $this->video = Video::whereUid($video)->withCount(['likes as likes', 'dislikes as dislikes', 'comments'])->with('comments')->first();
+        $this->comments = $this->video->comments()->with('user')->get();
     }
 
     protected $listeners = [

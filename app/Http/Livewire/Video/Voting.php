@@ -46,7 +46,8 @@ class Voting extends Component
                 $this->dislikes = $this->dislikes - 1;
             }
             $this->video->likes()->create([
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'video_id' => $this->video->id
             ]);
         }
 
@@ -64,7 +65,9 @@ class Voting extends Component
                 $this->likes = $this->likes - 1;
             }
             $this->video->dislikes()->create([
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'video_id' => $this->video->id
+
             ]);
         }
 

@@ -13,14 +13,10 @@ class Like extends Model
 
     public $timestamps = false;
 
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
 
-    public function video()
+    public function likeable()
     {
-        return $this->belongsTo(Video::class);
+        return $this->morphTo();
     }
 
     public function scopeCurrentUser($query)

@@ -43,14 +43,15 @@ class Video extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     public function dislikes()
     {
-        return $this->hasMany(Dislike::class);
+        return $this->morphMany(Dislike::class, 'dislikeable');
     }
 
 

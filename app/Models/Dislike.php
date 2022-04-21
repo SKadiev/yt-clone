@@ -15,14 +15,9 @@ class Dislike extends Model
 
     public $timestamps = false;
 
-    public function user()
+    public function dislikeable()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function video()
-    {
-        return $this->belongsTo(Video::class);
+        return $this->morphTo();
     }
 
     public function scopeCurrentUser($query)
