@@ -16,8 +16,32 @@ class Comment extends Model
         return $this->morphTo();
     }
 
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function dislikes()
+    {
+        return $this->morphMany(Dislike::class, 'dislikeable');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function doesUserLikeComment()
+    {
+        return $this->likes()
+            ->whereUserId(auth()->id())
+            ->where('likeable_type', Comment::class)->exists();
+    }
+
+    public function doesUserDislikeComment()
+    {
+        return $this->dislikes()
+            ->whereUserId(auth()->id())
+            ->where('dislikeable_type', Comment::class)->exists();
     }
 }
