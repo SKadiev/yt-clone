@@ -6,6 +6,7 @@ use App\Classes\Traits\WithLayoutRendering;
 use App\Models\Channel;
 use App\Models\Comment;
 use App\Models\Video;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use function view;
 
@@ -18,12 +19,16 @@ class CommentDisplay extends Component
     public Video $video;
     public int $likes;
     public int $dislikes;
+    public  $repliesCount;
+    public Collection $replies;
 
     public function mount()
     {
-        $this->comment->loadCount(['likes', 'dislikes']);
+        $this->comment->loadCount(['likes', 'dislikes', 'replies']);
         $this->likes = $this->comment->likes_count;
         $this->dislikes = $this->comment->dislikes_count;
+        $this->repliesCount = $this->comment->replies_count;
+        $this->replies = $this->comment->replies()->with('replyComment')->get();
     }
 
     public function render()

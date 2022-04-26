@@ -59,7 +59,7 @@
                     <div class="col-md-12">
                         <livewire:comment.comment-info :channel="$video->channel" :video="$video"/>
                         @foreach($comments as $comment)
-                            <livewire:comment.comment-display :channel="$video->channel" :video="$video" :comment="$comment"/>
+                            <livewire:comment.comment-display :channel="$comment->user->channel" :video="$video" :comment="$comment"/>
                         @endforeach
                     </div>
                 </div>

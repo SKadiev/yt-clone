@@ -36,4 +36,9 @@ class CommentInfo extends Component
         }
 
     }
+
+    public function replyOnComment()
+    {
+
+    }
 }

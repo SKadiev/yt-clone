@@ -14,7 +14,8 @@ class WatchVideo extends Component
     public function mount($video)
     {
         $this->video = Video::whereUid($video)->withCount(['likes as likes', 'dislikes as dislikes', 'comments'])->with('comments')->first();
-        $this->comments = $this->video->comments()->with('user')->get();
+        $this->comments = $this->video->comments()->where('is_reply', 0)->with(['user', 'replies'])->get();
+
     }
 
     protected $listeners = [

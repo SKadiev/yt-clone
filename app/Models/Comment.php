@@ -44,4 +44,9 @@ class Comment extends Model
             ->whereUserId(auth()->id())
             ->where('dislikeable_type', Comment::class)->exists();
     }
+
+    public function replies()
+    {
+        return $this->hasMany(CommentReply::class, 'reply_on_comment_id');
+    }
 }
