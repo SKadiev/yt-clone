@@ -84,4 +84,9 @@ class CommentDisplay extends Component
 
         $this->dislikes = $this->comment->dislikes()->count();
     }
+
+    public function replyOnComment()
+    {
+        
+    }
 }

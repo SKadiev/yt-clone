@@ -14,11 +14,12 @@
                                 class="btn btn-dark btn-sm shadow-none" type="button">
                             Reply
                         </button>
-                        {{--                        <div x-show="replySectionOpen">--}}
-                        {{--                            <livewire:comment.reply-comment :channel="$video->channel" :video="$video"--}}
-                        {{--                                                            :repliesCount="$repliesCount"/>--}}
+                        <template x-if="replySectionOpen">
+                            <div>
+                                <livewire:comment.reply-info  />
+                            </div>
+                        </template>
 
-                        {{--                        </div>--}}
                         <div>
                             <div class="d-flex text-gray">
                                 <div class="d-flex align-items-center">
