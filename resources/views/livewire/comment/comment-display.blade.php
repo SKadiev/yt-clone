@@ -36,13 +36,15 @@
                                         View {{$repliesCount === 1 ? ' reply' : $repliesCount . ' replies'}} </a>
 
                                     <template x-if="open">
-                                        @foreach($replies as $commentReply)
-                                            <div>
-                                                <livewire:comment.reply-comment :comment="$commentReply->replyComment"
-                                                                                :video="$video"
-                                                                                :channel="$commentReply->replyComment->user->channel"/>
-                                            </div>
-                                        @endforeach
+                                        <div>
+                                            @foreach($replies as $commentReply)
+
+                                                <livewire:comment.reply-comment
+                                                    :comment="$commentReply->replyComment"
+                                                    :video="$video"
+                                                    :channel="$commentReply->replyComment->user->channel"/>
+                                            @endforeach
+                                        </div>
                                     </template>
 
                                 </div>
